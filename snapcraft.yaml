@@ -16,7 +16,7 @@ architectures:
   
 apps:
     tradesim:
-      extensions: [gnome-3-28]
+      extensions: [gnome-3-36]
       command: usr/bin/com.github.horaciodrs.tradesim
       plugs:
         - desktop
