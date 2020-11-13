@@ -29,8 +29,7 @@ apps:
         GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
         GTK_USE_PORTAL: "1"
 
-slots:
-    parts:
+parts:
     elementary-sdk:
       plugin: nil
       build-packages:
