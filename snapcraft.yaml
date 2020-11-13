@@ -1,0 +1,60 @@
+name: tradesim
+base: core18 
+version: 2020.11.10
+summary: TradeSim
+description: |
+  The Linux Trading Simulator
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: i386
+  - build-on: amd64
+  - build-on: armhf
+  - build-on: arm64
+  
+apps:
+    tradesim:
+      extensions: [gnome-3-36]
+      command: usr/bin/com.github.horaciodrs.tradesim
+      plugs:
+        - desktop
+        - desktop-legacy
+        - x11
+        - home
+        - removable-media
+      desktop: usr/share/applications/com.github.horaciodrs.tradesim.desktop
+      environment:
+        GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
+        GTK_USE_PORTAL: "1"
+
+slots:
+    parts:
+    elementary-sdk:
+      plugin: nil
+      build-packages:
+        - software-properties-common
+      override-pull: |
+        add-apt-repository -y ppa:elementary-os/stable
+        add-apt-repository -y ppa:elementary-os/os-patches
+        apt -y update
+        apt -y upgrade
+    tradesim:
+      plugin: meson
+      after: [elementary-sdk]
+      meson-parameters:
+        - --prefix=/usr
+      source: https://github.com/horaciodrs/TradeSim/archive/2020.11.10.tar.gz
+      override-build: |
+        snapcraftctl build
+        sed -i 's|Icon=com.github.horaciodrs.tradesim|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/com.github.horaciodrs.tradesim.svg|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/com.github.horaciodrs.tradesim.desktop
+      build-packages:
+        - gettext
+        - libgtk-3-dev
+        - valac
+        - libgranite-dev
+        - libxml2-dev
+        - libglib2.0-dev
+        - libsqlite3-dev
+
