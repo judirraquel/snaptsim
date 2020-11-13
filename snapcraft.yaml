@@ -56,6 +56,7 @@ parts:
         - libxml2-dev
         - libglib2.0-dev
         - libsqlite3-dev
-    stage-packages:
-      - libgranite5
+      stage-packages:
+        - libgranite5
+        
 
