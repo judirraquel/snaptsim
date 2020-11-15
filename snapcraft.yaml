@@ -56,7 +56,7 @@ parts:
       after: [elementary-sdk]
       meson-parameters:
         - --prefix=/usr
-      source: https://github.com/horaciodrs/TradeSim/archive/2020.11.10.tar.gz
+      source: https://github.com/horaciodrs/TradeSim/archive/2020.11.14.tar.gz
       override-build: |
         snapcraftctl build
         sed -i 's|Icon=com.github.horaciodrs.tradesim|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/com.github.horaciodrs.tradesim.svg|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/com.github.horaciodrs.tradesim.desktop
