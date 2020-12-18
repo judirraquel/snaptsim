@@ -1,6 +1,6 @@
 name: tradesim
 base: core18 
-version: 2020.11.10
+version: 2020.12.13
 summary: TradeSim
 description: |
   The Linux Trading Simulator
